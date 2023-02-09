@@ -1,0 +1,109 @@
+{
+  "name": "multi-item",
+  "version": "1.0.0",
+  "description": "multi-item",
+  "author": "FF",
+  "scripts": {
+    "dev:dbComparePc": "cross-env PROJECT_NAME=dbComparePc vue-cli-service serve ",
+    "build:dbComparePcDev": "cross-env PROJECT_NAME=dbComparePc vue-cli-service build --mode production-dev",
+    "build:dbComparePcProd": "cross-env PROJECT_NAME=dbComparePc vue-cli-service build",
+    "dev:drivingBehavior": "cross-env PROJECT_NAME=drivingBehavior vue-cli-service serve ",
+    "build:drivingBehaviorDev": "cross-env PROJECT_NAME=drivingBehavior vue-cli-service build --mode production-dev",
+    "build:drivingBehaviorProd": "cross-env PROJECT_NAME=drivingBehavior vue-cli-service build",
+    "dev:projectA": "cross-env PROJECT_NAME=projectA vue-cli-service serve ",
+    "build:projectA": "cross-env PROJECT_NAME=projectA vue-cli-service build --mode production-dev",
+    "dev": "cross-env PROJECT_NAME=base vue-cli-service serve",
+    "dev:all":"concurrently \"cross-env PROJECT_NAME=base vue-cli-service serve\" \"npm run dev:dbComparePc\" \"npm run dev:drivingBehavior\"",
+    "build:devBase": "vue-cli-service build --mode production-dev",
+    "build:prodBase": "vue-cli-service build",
+    "build:dev": "concurrently  \"npm run build:dbComparePcDev\" \"npm run build:drivingBehaviorDev\"",
+    "build:prod": "concurrently  \"npm run build:dbComparePcProd\" \"npm run build:drivingBehaviorProd\"",
+    "preview": "node build/index.js --preview",
+    "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "lint:style": "stylelint \"src/**/*.(vue|scss|css)\"",
+    "fix:style": "stylelint --fix \"src/**/*.(vue|scss|css)\"",
+    "test:unit": "jest --clearCache && vue-cli-service test:unit",
+    "test:ci": "npm run lint && npm run test:unit"
+  },
+  "dependencies": {
+    "axios": "0.18.1",
+    "concurrently": "^6.2.0",
+    "core-js": "3.6.5",
+    "cross-env": "^7.0.3",
+    "element-ui": "2.13.2",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "ff-auto-router": "^2.0.3",
+    "ff-koa": "^1.0.3",
+    "fuse.js": "^6.4.6",
+    "js-cookie": "2.2.0",
+    "js-utils-lc": "^1.0.4",
+    "normalize.css": "7.0.0",
+    "nprogress": "0.2.0",
+    "path-to-regexp": "2.4.0",
+    "screenfull": "4.2.0",
+    "vant": "^2.12.53",
+    "vue": "2.6.10",
+    "vue-ele-component-ff": "^2.0.0",
+    "vue-router": "3.0.6",
+    "vuex": "3.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "~11.0.0",
+    "@commitlint/config-conventional": "~11.0.0",
+    "@vue/cli-plugin-babel": "4.4.4",
+    "@vue/cli-plugin-eslint": "4.4.4",
+    "@vue/cli-plugin-unit-jest": "4.4.4",
+    "@vue/cli-service": "4.4.4",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "autoprefixer": "9.5.1",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "23.6.0",
+    "babel-plugin-dynamic-import-node": "2.3.3",
+    "chalk": "2.4.2",
+    "connect": "3.6.6",
+    "eslint": "6.7.2",
+    "eslint-plugin-vue": "6.2.2",
+    "html-webpack-plugin": "3.2.0",
+    "husky": "~4.2.5",
+    "lint-staged": "~10.5.4",
+    "runjs": "4.3.2",
+    "sass": "1.26.8",
+    "sass-loader": "8.0.2",
+    "script-ext-html-webpack-plugin": "2.1.3",
+    "serve-static": "1.13.2",
+    "stylelint": "13.13.1",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-recess-order": "2.4.0",
+    "stylelint-config-standard": "22.0.0",
+    "stylelint-order": "4.1.0",
+    "stylelint-scss": "3.19.0",
+    "svg-sprite-loader": "4.1.3",
+    "svgo": "1.2.2",
+    "vue-template-compiler": "2.6.10"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "engines": {
+    "node": ">=8.9",
+    "npm": ">= 3.0.0"
+  },
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint src/**/*.{js,vue}",
+      "stylelint \"src/**/*.(vue|scss|css)\"",
+      "git add ."
+    ]
+  }
+}

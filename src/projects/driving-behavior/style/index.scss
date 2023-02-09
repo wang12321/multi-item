@@ -1,0 +1,18 @@
+$color-primary: #386df8;  //主题色
+$background:#f3f4f8;//页面背景色
+
+body {
+  background-color: $background ;
+}
+
+.van-tabs__line {
+  background: $color-primary;
+}
+
+.van-tab__text {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 48px;
+  color: rgba(0,0,0,.84);
+}
